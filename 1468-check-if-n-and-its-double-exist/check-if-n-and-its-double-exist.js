@@ -9,11 +9,11 @@ var checkIfExist = function(arr) {
 
     let mp = new Map();
 
-    for (let i of arr) {
-        if (mp.get(i * 2) || mp.get(i / 2)) {
+    for (let i = 0; i < arr.length; i++) {
+        if (mp.get(arr[i] * 2) || mp.get(arr[i] / 2)) {
             return true
         }
-        mp.set(i, 2);
+        mp.set(arr[i], true);
     }
 
     return false;
