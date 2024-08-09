@@ -11,7 +11,7 @@ var simplifyPath = function(path) {
         if (i === '..') {
             stack.pop();
         }else if (i === '.' || i === '') {
-
+            continue;
         }else {
             stack.push(i);
         }
