@@ -17,11 +17,11 @@ var simplifyPath = function(path) {
         }
     }
     if (stack.length == 0) return '/';
-    let S = '';
+    let res = '';
     for (let i = 0; i < stack.length; i++) {
-        S += '/';
-        S += stack[i];
+        res += '/';
+        res += stack[i];
     }
     
-    return S;
+    return res;
 };
