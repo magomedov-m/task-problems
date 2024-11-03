@@ -13,11 +13,9 @@ var frequencySort = function(s) {
 
     let stroke = '';
 
-    sortedMap.forEach(([key, value]) => {
-        for (let i = 0; i < value; i++) {
-            stroke += key;
-        }
-    })
+    for (let [key, value] of sortedMap) {
+        stroke += key.repeat(value);
+    }
 
     return stroke;
 };
