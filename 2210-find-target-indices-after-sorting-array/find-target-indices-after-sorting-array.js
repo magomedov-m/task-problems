@@ -5,12 +5,21 @@
  */
 var targetIndices = function(nums, target) {
     let ans = [];
-    nums.sort((a, b) => a - b);
+    let cur = 0;
+    let elemQuantity = 0;
 
-    for (let i = 0; i < nums.length; i++) {
-        if (nums[i] === target) {
-            ans.push(i);
+    for (let i of nums) {
+        if (i < target) {
+            cur++;
+        }else if (i == target) {
+            elemQuantity++;
         }
+    }
+
+    while (elemQuantity != 0) {
+        ans.push(cur);
+        cur++;
+        elemQuantity--;
     }
 
     return ans;
