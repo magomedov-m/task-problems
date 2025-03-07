@@ -3,14 +3,25 @@
  * @return {number}
  */
 var countGoodSubstrings = function(s) {
-    let count = 0;
-
     if (s.length < 3) return 0;
 
-    for (let i = 2; i < s.length; i++) {
-        let flag = s[i] !== s[i - 1] && s[i] !== s[i - 2] && s[i - 1] !== s[i - 2];
+    let count = 0;
 
-        if (flag) count++
+    let left = 0;
+    let freq = {};
+
+    for (let right = 0; right < s.length; right++) {
+        freq[s[right]] = (freq[s[right]] || 0) + 1;
+
+        if (right - left + 1 == 3) {
+            if (Object.keys(freq).length === 3) count++;
+
+            freq[s[left]]--;
+            if (freq[s[left]] === 0) {
+                delete freq[s[left]]
+            }
+            left++
+        }
     }
 
     return count;
