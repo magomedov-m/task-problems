@@ -3,16 +3,16 @@
  * @return { increment: Function, decrement: Function, reset: Function }
  */
 var createCounter = function(init) {
-    
+
     return {
         curValue: init,
         increment: function increment() {
             this.curValue++
-            return this.curValue
+            return this.curValue;
         },
         decrement: function decrement() {
-            this.curValue--
-            return this.curValue
+            this.curValue--;
+            return this.curValue;
         },
         reset: function reset() {
             this.curValue = init
