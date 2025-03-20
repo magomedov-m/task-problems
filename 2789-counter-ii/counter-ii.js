@@ -3,20 +3,20 @@
  * @return { increment: Function, decrement: Function, reset: Function }
  */
 var createCounter = function(init) {
+    let curValue = init;
 
     return {
-        curValue: init,
         increment: function increment() {
-            this.curValue++
-            return this.curValue;
+            curValue++;
+            return curValue;
         },
         decrement: function decrement() {
-            this.curValue--;
-            return this.curValue;
+            curValue--;
+            return curValue;
         },
         reset: function reset() {
-            this.curValue = init
-            return this.curValue
+            curValue = init;
+            return curValue;
         }
     }
 };
