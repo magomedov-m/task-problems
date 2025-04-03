@@ -9,7 +9,7 @@ var findMin = function(nums) {
     while (l < r) {
         let mid = Math.floor((l + r) / 2);
 
-        if (nums[mid] < nums[r]) {
+        if (nums[r] > nums[mid]) {
             r = mid;
         }else {
             l = mid + 1;
