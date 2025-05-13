@@ -4,30 +4,23 @@
  * @return {boolean}
  */
 var isAnagram = function(s, t) {
-    let mp = new Map();
-    function isLetter(str) {
-        return str.length === 1 && str.match(/[a-z]/i)
-    }
+    let mp1 = new Map();
+    let mp2 = new Map();
 
     for (let i of s) {
-        if (isLetter(i)) {
-            mp.set(i, (mp.get(i) || 0) + 1);
-        }
+        mp1.set(i, mp1.get(i) + 1 || 0);
+    }
+    for (let i of t) {
+        mp2.set(i, mp2.get(i) + 1 || 0);
     }
 
-    for (let j of t) {
-        if (isLetter(j)) {
-            if (mp.has(j)) {
-                mp.set(j, mp.get(j) - 1);
-            }else {
-                mp.set(j, -1);
-            }
-        }
-    }
+    if (mp1.size !== mp2.size) return false;
 
-    for (let [i, j] of mp.entries()) {
-        if (j != 0) return false;
+    for (let [i, j] of mp1.entries()) {
+        if (mp2.get(i) !== j) {
+            return false;
+        } 
     }
 
     return true;
-}; 
+};
