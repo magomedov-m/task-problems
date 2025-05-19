@@ -8,9 +8,9 @@ var containsDuplicate = function(nums) {
     for (let i of nums) {
         if (mp.has(i)) {
             return true;
-        }else {
-            mp.set(i, mp.get(i) + 1 || 0);
         }
+        
+        mp.set(i, mp.get(i) + 1 || 0);
     }
 
     return false
