@@ -2,19 +2,19 @@
  * @param {number[]} temperatures
  * @return {number[]}
  */
-var dailyTemperatures = function(temperatures) {
+var dailyTemperatures = function(t) {
     // задача не решена самостоятельно, подсказка: использовать монотонные стек. решить эту задачу 29.05
-     const n = temperatures.length;
-    const ans = new Array(n).fill(0);
-    const st = [];
+    let res = new Array(t.length).fill(0);
+    let stack = [];
 
-    for (let i = n - 1; i >= 0; i--) {
-        while (st.length && temperatures[i] >= temperatures[st[st.length - 1]]) {
-            st.pop();
+    for (let i = t.length - 1; i >= 0; i--) {
+        while (stack.length && t[i] >= t[stack[stack.length - 1]]) {
+            stack.pop()
         }
-        ans[i] = st.length ? st[st.length - 1] - i : 0;
-        st.push(i);
+
+        res[i] = stack.length ? stack[stack.length - 1] - i : 0;
+        stack.push(i)
     }
-    
-    return ans;
+
+    return res;
 };
