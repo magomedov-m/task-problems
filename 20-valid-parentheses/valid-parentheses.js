@@ -2,39 +2,25 @@
  * @param {string} s
  * @return {boolean}
  */
-// var isValid = function(s) {
-//     const key = {
-//         '(': ')', 
-//         '[': ']',
-//         '{': '}',
-//     };
+var isValid = function(s) {
+    let stack = [];
+    let close = {
+        '}': '{',
+        ']': '[',
+        ')': '('
+    }
 
-//     let stack = [];
-
-//     for (let i = 0; i < s.length; i++) {
-//         if (key[s[i]]) {
-//             stack.push(s[i])
-//         }else if (s[i] !== key[stack.pop()]) {
-//             return false;
-//         }
-//     }
-
-//     return stack.length == 0;
-// };
-
-function isValid(s) {
-    const stack = [];
     for (let i of s) {
-        if (i === ')' && stack[stack.length - 1] === '(') {
-            stack.pop();
-        }else if (i === '}' && stack[stack.length - 1] === '{') {
-            stack.pop();
-        }else if (i === ']' && stack[stack.length - 1] === '[') {
-            stack.pop();
+        if (stack.length > 0 && close[i]) {
+            if (stack[stack.length - 1] == close[i]) {
+                stack.pop();
+            }else {
+                return false;
+            }
         }else {
             stack.push(i);
         }
     }
-    
-    return !stack.length;
-}
+
+    return stack.length === 0;
+};
