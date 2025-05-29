@@ -23,7 +23,7 @@ var getIntersectionNode = function(headA, headB) {
         if (set.has(headB)) {
             return headB;
         }
-        
+
         headB = headB.next;
     }
 
