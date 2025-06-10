@@ -2,25 +2,63 @@
  * @param {number[]} nums
  * @return {string[]}
  */
+
+/*
+Q:
+ 1. [] - true
+ 2. valid number - false
+ 3. sorted - true
+ 4. duplicates - false
+
+A:
+two pointers
+
+res = []
+str = ''
+ 1 2 4 5 7
+         ^
+         ^
+
+Time: O(n + k)
+Space: O(1)
+*/
 var summaryRanges = function(nums) {
-    if (nums.length == 0) return nums;
+    if (!nums.length) return [];
 
     let res = [];
-    let left = 0;
+    let str = '';
+    let l = 0;
+    let r = 0;
 
-    for (let i = 0; i < nums.length; i++) {
-        if (nums[i] + 1 == nums[i + 1]) {
-            continue;
-        }else {
-            if (i - left > 0) {
-                res.push(`${nums[left]}->${nums[i]}`)
+    while (r < nums.length) {
+
+        if (r == nums.length - 1 || nums[r + 1] - nums[r] > 1) {
+            if (nums[r] != nums[l]) {
+                str += `${nums[l]}->${nums[r]}`
+                res.push(str);
+                str = '';
+
+                l = r + 1;
             }else {
-                res.push(`${nums[i]}`)
+                str += `${nums[l]}`
+                res.push(str);
+                str = ''
+                l++
             }
-
-            left = i + 1;
         }
+        r++;
     }
 
     return res;
 };
+
+/*
+str = ''
+res = ['0->2', '4->5', '', ]
+r = 0
+l = 0
+
+ 0 1 2 4 5 7
+           ^
+           ^
+*/
