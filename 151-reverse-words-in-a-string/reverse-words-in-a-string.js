@@ -10,9 +10,9 @@ var reverseWords = function(s) {
     let r = cur.length - 1;
 
     while (l < r) {
-        if (cur[l] == '' || cur[l] == ' ') {
+        if (cur[l] == ' ') {
             l++;
-        }else if (cur[r] == '' || cur[r] == ' ') {
+        }else if (cur[r] == ' ') {
             r--
         }else {
             [cur[l], cur[r]] = [cur[r], cur[l]];
