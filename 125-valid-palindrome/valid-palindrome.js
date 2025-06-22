@@ -3,26 +3,25 @@
  * @return {boolean}
  */
 var isPalindrome = function(s) {
+    function isChar(str) {
+        let val = str.toLowerCase();
+        return (val >= 'a' && val <= 'z') || (val >= '0' && val <= '9');
+    }
+
     let l = 0;
     let r = s.length - 1;
 
     while (l < r) {
-        while (l < r && !alphaNum(s[l])) {
-            l++;
-        }
-        while (r > l && !alphaNum(s[r])) {
-            r--
-        }
-        if (s[l].toLowerCase() !== s[r].toLowerCase()) {
-            return false
-        }
-        l++; r--;
-    }  
+        while (l < r && !isChar(s[l])) l++;
+        while (l < r && !isChar(s[r])) r--;
 
-    function alphaNum(el) {
-        return (el >= 'A' && el <= 'Z' || el >= '0' && el <= '9' || el >= 'a' && el <= 'z')
-    } 
+        if (s[l].toLowerCase() !== s[r].toLowerCase()) {
+            return false;
+        }
+
+        l++;
+        r--;
+    }
 
     return true;
 };
-
