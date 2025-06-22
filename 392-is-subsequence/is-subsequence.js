@@ -5,46 +5,44 @@
  */
 /*
 Q:
- 1. s > t - true
- 2. s || t == 0 - true
- 3. char - eng, lowercase
+ 1. s.len > t.len - true
+ 2. only eng lowerCase char
+ 3. '' - true
 
 A:
- count = 2
  abc
    ^
  ahbgdc
       ^
 
- abcd
- abc
-
-Time: O(n);
+Time: O(n)
 Space: O(1)
 */
 var isSubsequence = function(s, t) {
     if (s.length > t.length) return false;
 
-    let count = 0;
-
-    for (let i = 0; i < t.length; i++) {
-        if (t[i] == s[count]) {
-            count++;
+    let l = 0;
+    
+    for (let i of t) {
+        if (i == s[l]) {
+            l++;
         }
     }
 
-    if (count == s.length) return true;
-
-    return false;
+    return l == s.length;
 };
 
 /*
 test:
- count = 1
- axc
-  ^
- ahbgdc
-      ^
+ 1.
+ 'ab'
+   ^
+ 'acg'
+    ^
 
- 
+ 2.
+ 'axn'
+    ^
+ 'vancx'
+      ^
 */
