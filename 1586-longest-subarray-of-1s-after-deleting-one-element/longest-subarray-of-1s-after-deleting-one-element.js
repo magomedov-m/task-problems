@@ -13,7 +13,7 @@ var longestSubarray = function(nums) {
             count++;
         }
 
-        while (count > 1) {
+        while (count == 2) {
             if (nums[l] == 0) {
                 count--;
             }
