@@ -3,35 +3,46 @@
  * @param {number} h
  * @return {number}
  */
+
+/*
+Q:
+ 1. 
+ 2. 
+ 3.
+
+A:
+ k = 4;
+ h = 3
+ 1 2 4
+     ^
+ 0 0 0
+ 
+Time: O(n * log n)
+Space: O(1)
+*/
 var minEatingSpeed = function(piles, h) {
-    let l = 1;
-    let r = Math.max(...piles);
-    let optimal = 0;
-    
+    let k = 1;
+    let max = Math.max(...piles);
 
-    function predicat(value) {
-        let sum = 0;
+    function eatBananas(speed) {
+        let hours = 0;
 
-        for (let i of piles) {
-            if (i > value) {
-                sum += Math.ceil(i / value);
-            }else {
-                sum += 1;
-            }
+        for (let pile of piles) {
+            hours += Math.ceil(pile / speed);
         }
 
-        return sum <= h;
+        return hours > h;
     }
 
-    while (l < r) {
-        let mid = Math.floor((r + l) / 2);
+    while (k < max) {
+        let mid = Math.floor(k + (max - k) / 2);
 
-        if (predicat(mid)) {
-            r = mid;
+        if (eatBananas(mid)) {
+            k = mid + 1;
         }else {
-            l = mid + 1;
+            max = mid;
         }
     }
 
-    return l;
+    return k;
 };
