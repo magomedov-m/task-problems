@@ -2,20 +2,56 @@
  * @param {string} s
  * @return {number}
  */
-var lengthOfLongestSubstring = function(s) {
-    let set = new Set();
-    let l = 0;
-    let maxL = 0;
+/*
+Q:
+ 1. 0 <= str.length <= 5 * 10^4
+ 2. str consist eng lowerCase char, number, " "
+ 3. valid number - true
 
-    for (let r = 0; r < s.length; r++) {
-        while (set.has(s[r])) {
-            set.delete(s[l]);
-            l++
+A:
+ mp = []
+ 'abca'
+   ^
+     ^
+
+Time: O(n)
+Space: O(n)
+*/
+var lengthOfLongestSubstring = function(s) {
+    if (s.length < 2) return s.length;
+
+    let mp = new Map();
+    let l = 0;
+    let r = 0;
+    let maxLen = 0;
+
+    while (r < s.length) {
+        while (mp.has(s[r])) {
+            mp.delete(s[l]);
+            l++;
         }
 
-        set.add(s[r]);
-        maxL = Math.max(maxL, r - l + 1);
+        maxLen = Math.max(maxLen, r - l);
+        mp.set(s[r]);
+        r++;
     }
 
-    return maxL;
+    return maxLen + 1;
 };
+
+/*
+test:
+1.
+ abca
+  ^
+    ^
+
+2.
+ ''
+
+3.
+maxLen = 2;
+ abcabcbb
+       ^
+        ^
+*/
