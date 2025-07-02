@@ -10,6 +10,11 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
+/*
+Q:
+ 1. root = null -> []
+ 2. bin tree - true
+*/
 var preorderTraversal = function(root) {
     if (!root) return [];
 
