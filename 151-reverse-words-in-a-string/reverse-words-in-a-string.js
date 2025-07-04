@@ -22,7 +22,7 @@ var reverseWords = function(s) {
     }
 
     for (let i of cur) {
-        if (i != '' || i != ' ' && res.length == 0) {
+        if (i != '') {
             res += i + ' ';
         }
     }
