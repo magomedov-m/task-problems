@@ -13,7 +13,7 @@
  * @return {number}
  */
 var rangeSumBST = function(root, low, high) {
-    function findLeft(root) {
+    function findRanges(root) {
         if (!root) return [];
 
         let res = [];
@@ -33,35 +33,12 @@ var rangeSumBST = function(root, low, high) {
         return res;
     }
 
-    function findRight(root) {
-        if (!root) return [];
-        
-        let res = [];
-        let stack = [root];
-
-        while (stack.length > 0) {
-            let node = stack.pop();
-
-            if (node.val <= high && node.val >= low) {
-                res.push(node.val);
-            }
-
-            if (node.right) stack.push(node.right);
-            if (node.left) stack.push(node.left);
-        }
-
-        return res;
-    }
-
-    let leftArr = findLeft(root);
-    let rightArr = findRight(root);
-
-    let arr = [...leftArr, ...rightArr];
+    let arr = [...findRanges(root)];
 
     let sum = 0;
     for (let i of arr) {
         sum += i;
     }
 
-    return sum / 2;
+    return sum;
 };
