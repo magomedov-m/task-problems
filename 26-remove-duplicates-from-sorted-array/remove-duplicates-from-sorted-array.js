@@ -16,7 +16,8 @@ two pointer
        ^
            ^
 
-Time: O(n + k);
+Time: O(n + k) - my mistake
+Time*: O(n)
 Space: O(1)
 */
 
