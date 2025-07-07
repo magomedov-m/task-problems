@@ -4,26 +4,35 @@
  * @return {boolean}
  */
 var checkInclusion = function(s1, s2) {
-    let mp = new Map();
+    let s1Count = new Array(26).fill(0);
+    let s2Count = new Array(26).fill(0);
+    
+    function palindrome(s1Copy, s2Copy) {
 
-    for (let i of s1) {
-        mp.set(i, mp.get(i) + 1 || 1);
+        for (let i = 0; i < s1Copy.length; i++) {
+            if (s1Copy[i] !== s2Copy[i]) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
-    for (let l = 0; l < s2.length; l++) {
-        let r = l;
-        let copy = new Map(mp);
+    for (let i = 0; i < s1.length; i++) {
+        s1Count[s1.charCodeAt(i) - 97]++;
+        s2Count[s2.charCodeAt(i) - 97]++;
+    }
 
-        while (r - l <= s1.length) {
-            if (r - l == s1.length) {
-                return true;
-            }else if (copy.get(s2[r]) > 0) {
-                copy.set(s2[r], copy.get(s2[r]) - 1);
-            }else {
-                break;
-            }
+    if (palindrome(s1Count, s2Count)) {
+        return true;
+    }
 
-            r++;
+    for (let i = s1.length; i < s2.length; i++) {
+        s2Count[s2.charCodeAt(i) - 97]++;
+        s2Count[s2.charCodeAt(i - s1.length) - 97]--;
+
+        if (palindrome(s1Count, s2Count)) {
+            return true;
         }
     }
 
