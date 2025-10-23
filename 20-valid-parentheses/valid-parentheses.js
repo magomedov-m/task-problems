@@ -3,24 +3,48 @@
  * @return {boolean}
  */
 var isValid = function(s) {
-    const obj = {
-        ')': '(',
+    let stack = [];
+
+    let obj = {
         '}': '{',
+        ')': '(',
         ']': '[',
     }
-    let stack = [];
 
     for (let i of s) {
         if (!obj[i]) {
             stack.push(i);
-        }else if (i == ')' && stack.pop() !== '(') {
-            return false
-        }else if (i == '}' && stack.pop() !== '{') {
-            return false
-        }else if (i == ']' && stack.pop() !== '[') {
-            return false
+            continue;
         }
+
+        if (obj[i] && stack.length > 0) {
+            if (obj[i] !== stack[stack.length - 1]) {
+                return false;
+                continue;
+            }else {
+                stack.pop();
+                continue;
+            }
+        }
+
+        if (obj[i] && stack.length == 0) return false;
     }
 
-    return stack.length == 0;
+    return true && stack.length == 0;
 };
+
+// 4. '[()]'
+//         ^
+// stack = '' true
+
+// 1. '(('
+//      ^
+// stack = '((' - false
+
+// 2. '[]'
+//       ^
+// stack = '' true
+
+// 3. ']]]'
+//     ^
+// stack = '' false
