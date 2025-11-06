@@ -14,15 +14,15 @@
 // () + (())
 //         ^
 var maxDepth = function(s) {
-    let stack = [];
+    let count = 0;
     let val = 0;
 
     for (let i of s) {
         if (i == '(') {
-            stack.push('(');
+            count++;
         }else if (i == ')') {
-            val = Math.max(val, stack.length);
-            stack.pop();
+            val = Math.max(val, count);
+            count--;
         }
     }
 
