@@ -12,7 +12,7 @@ var strStr = function(haystack, needle) {
 
     if (lenH < lenN) return -1;
 
-    for (let i = 0; i < lenH - lenN + 1; i++) {
+    for (let i = 0; i <= lenH - lenN; i++) {
         let subStr = haystack.slice(i, lenN + i);
 
         if (subStr == needle) return i;
