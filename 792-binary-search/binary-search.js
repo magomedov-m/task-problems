@@ -3,29 +3,16 @@
  * @param {number} target
  * @return {number}
  */
-
-/*
-Q:
- 1. nums.length = 0 - false
- 2. item - -10^4 / 10^4
-
-A: 
-bin search
-t = 4
-1 2 3 4 6 7
-      ^
-      ^
-      m
-
-Time: O(log n)
-Space: O(1)    
-*/
+ // [] - false
+ // sorted - true
+ // duplicates - false
+ // 
 var search = function(nums, target) {
     let l = 0;
     let r = nums.length - 1;
-    
+
     while (l <= r) {
-        let mid = Math.floor(l + (r - l) / 2);
+        let mid = Math.floor((r - l) / 2) + l;
 
         if (nums[mid] == target) {
             return mid;
@@ -39,12 +26,13 @@ var search = function(nums, target) {
     return -1;
 };
 
-/*
-test:
-1.
- t = 1 
- 1 3 5 6
- ^
- ^
- m
-*/
+// [1, 2, 3, 4]
+//     m
+// l = 0; r = 3;
+// t = 2
+
+//            l     r
+// [-1, 0, 3, 5, 9, 12]
+//               ^
+// l = 3; r = 5;
+// mid = 2
