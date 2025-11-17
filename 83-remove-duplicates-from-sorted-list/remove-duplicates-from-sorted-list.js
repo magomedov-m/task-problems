@@ -9,21 +9,23 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
+ // [] - true
+ // +- number = true
+ // sorted - true
+ // not duplicate - false
 var deleteDuplicates = function(head) {
-    let l = head;
-    let r = head ? head.next : null;
+    let cur = head;
 
-    while (l && r) {
-        if (l.val == r.val) {
-            r = r.next
+    while (cur && cur.next) {
+        if (cur.val == cur.next.val) {
+            cur.next = cur.next.next;
         }else {
-            l.next = r;
-            l = r;
-            r = r.next;
+            cur = cur.next;
         }
     }
 
-    if (l) l.next = null;
-
     return head;
 };
+
+// [1, 2, 2, 4]
+// res = 1, 2, 2, 4
