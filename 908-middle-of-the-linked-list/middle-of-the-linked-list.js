@@ -9,22 +9,29 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
+ // [] - false
+ // 1 <= node.val <= 100
 var middleNode = function(head) {
     let count = 0;
-    let start = head;
+    let dummy = head;
 
-    while (start) {
-        start = start.next;
+    while (dummy) {
         count++;
+        dummy = dummy.next;
     }
+    let flag = count % 2
+    count = Math.ceil(count / 2);
 
-    let len = Math.floor(count / 2);
+    while (head) {
+        count--;
+        if (count == 0) {
+            if (flag > 0) {
+                return head;
+            }else {
+                return head.next;
+            }
+        }
 
-    let res = head;
-    while (len > 0) {
-        res = res.next;
-        len--;
+        head = head.next;
     }
-
-    return res;
 };
