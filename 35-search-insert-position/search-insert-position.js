@@ -3,31 +3,32 @@
  * @param {number} target
  * @return {number}
  */
+ // 1 <= n.len <= 10^5
+ // +- digit - true
+ // target < nums[0] || target > nums[-1] - false
+ // duplicates - false
 var searchInsert = function(nums, target) {
-    // for (let i = 0; i < nums.length; i++) {
-    //     if (nums[i] === target) return i;
-    // }
+    let l = 0;
+    let r = nums.length - 1;
 
-    // for (let j = 0; j < nums.length; j++) {
-    //     if (target >= nums[j] && target <= nums[j + 1]) return j + 1;
-    //     else if (target < nums[0]) return 0
-    //     else if (target > nums[nums.length - 1]) return nums.length
-    // }
+    while (l <= r) {
+        let mid = Math.floor((r - l) / 2) + l;
 
-    let start = 0;
-    let end = nums.length - 1;
-
-    while (start <= end) {
-        let middle = Math.floor((end + start) / 2);
-
-        if (nums[middle] > target) {
-            end = middle - 1;
-        }else if (nums[middle] < target) {
-            start = middle + 1;
+        if (nums[mid] == target) {
+            return mid;
+        }else if (nums[mid] < target) {
+            l = mid + 1;
         }else {
-            return middle;
+            r = mid - 1;
         }
     }
 
-    return start;
+    return l;
 };
+// mid = 0
+// l = 0; r = 4
+// [1, 3, 5, 6];
+//           l
+//        m
+//           r
+//  target = 7
