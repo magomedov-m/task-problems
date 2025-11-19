@@ -4,23 +4,22 @@
  * @return {number[]}
  */
 var targetIndices = function(nums, target) {
-    let ans = [];
-    let cur = 0;
-    let elemQuantity = 0;
+    let minElems = 0;
+    let targetElem = 0;
 
     for (let i of nums) {
         if (i < target) {
-            cur++;
+            minElems ++;
         }else if (i == target) {
-            elemQuantity++;
+            targetElem ++;
         }
     }
 
-    while (elemQuantity != 0) {
-        ans.push(cur);
-        cur++;
-        elemQuantity--;
+    let resNums = [];
+
+    for (let i = minElems; i < minElems + targetElem; i++) {
+        resNums.push(i);
     }
 
-    return ans;
+    return resNums;
 };
