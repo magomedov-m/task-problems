@@ -22,8 +22,8 @@ var solution = function(isBadVersion) {
     return function(n) {
         if (n == 1) return n;
 
-        let l = 0;
-        let r = n - 1;
+        let l = 1;
+        let r = n;
 
         while (l <= r) {
             let mid = Math.floor((r - l) / 2) + l;
