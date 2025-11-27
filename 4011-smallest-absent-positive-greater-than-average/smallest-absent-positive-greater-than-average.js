@@ -16,17 +16,11 @@ var smallestAbsent = function(nums) {
     let midValue = sum / len;
     let startIdx = Math.ceil(midValue);
 
-    // while (mp.has(startIdx) || startIdx == midValue || startIdx <= 0) {
-    //     startIdx++;
-    // }
-    for (startIdx; startIdx < Infinity; startIdx++) {
-        if (mp.has(startIdx) || startIdx == midValue || startIdx <= 0) {
-            continue;
-        }else {
-            return startIdx;
-        }
+    while (mp.has(startIdx) || startIdx == midValue || startIdx <= 0) {
+        startIdx++;
     }
-    
+
+    return startIdx;
 };
 // mp = 3:true; 5:true;
 // sum = 8
