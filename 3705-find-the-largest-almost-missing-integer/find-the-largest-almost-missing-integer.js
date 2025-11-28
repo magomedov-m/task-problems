@@ -22,10 +22,20 @@ var largestInteger = function(nums, k) {
         return maxElem;
     }
 
+    function max(nums) {
+        let max = -1;
+
+        for (let i of nums) {
+            if (i > max) max = i;
+        }
+
+        return max
+    }
+
     if (k == 1) {
         return findMaxElem(nums);
     }else if (k == n) {
-        return Math.max(...nums)
+        return max(nums);
     }else {
         let first = map.get(nums[0]);
         let second = map.get(nums[n - 1]);
