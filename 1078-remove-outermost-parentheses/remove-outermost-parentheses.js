@@ -3,22 +3,29 @@
  * @return {string}
  */
 var removeOuterParentheses = function(s) {
-    let stack = [];
-    let answer = '';
+    let count = 0;
+    let res = '';
 
     for (let i of s) {
-        if (i === '(') {
-            stack.push(i)
-            if (stack.length > 1) {
-                answer += i
+        if (i == '(') {
+            count++;
+
+            if (count > 1) {
+                res += i;
             }
-        }else if (i === ')' && stack.length > 1) {
-            stack.pop()
-            answer += i
-        }else if (i === ')' && stack.length < 2) {
-            stack.pop()
+        }else {
+            count--;
+
+            if (count > 0) {
+                res += i;
+            }
         }
     }
 
-    return answer;
+    return res;
 };
+
+// count = 0
+// res = '()()()'
+// (()())(())
+//          ^
