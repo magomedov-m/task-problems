@@ -10,7 +10,7 @@ var largestInteger = function(nums, k) {
         map.set(i, (map.get(i) || 0) + 1);
     }
 
-    function findMaxElem(nums) {
+    function findUniqMaxElem(nums) {
         let maxElem = -1;
 
         for (let [key, value] of map) {
@@ -22,20 +22,20 @@ var largestInteger = function(nums, k) {
         return maxElem;
     }
 
-    function max(nums) {
+    function findMaxElem(nums) {
         let max = -1;
 
         for (let i of nums) {
             if (i > max) max = i;
         }
 
-        return max
+        return max;
     }
 
     if (k == 1) {
-        return findMaxElem(nums);
+        return findUniqMaxElem(nums);
     }else if (k == n) {
-        return max(nums);
+        return findMaxElem(nums);
     }else {
         let first = map.get(nums[0]);
         let second = map.get(nums[n - 1]);
