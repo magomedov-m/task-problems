@@ -2,18 +2,29 @@
  * @param {string} s
  * @return {string}
  */
+ // only lowercase en letters - true
+ // '' - false
+ // bbbb/aaa/dddd
 var removeDuplicates = function(s) {
     let stack = [];
 
-    if (s.length < 2) return s;
+    for (let i = 0; i < s.length; i++) {
+        let n = stack.length;
 
-    for (let i of s) {
-        if (i === stack[stack.length - 1]) {
+        if (stack.length && stack[n - 1] == s[i]) {
             stack.pop();
             continue;
         }
-        stack.push(i);
+
+        stack.push(s[i]);
     }
 
     return stack.join('');
 };
+// stack = [ca]
+// abbaca
+//      ^
+
+// abbaca
+//     ^
+// stack = []
