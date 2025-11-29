@@ -4,7 +4,6 @@
  */
 var finalPrices = function(prices) {
     if (prices.length == 1) return prices;
-    let res = [];
 
     for (let i = 0; i < prices.length - 1; i++) {
         let j = i + 1;
@@ -12,17 +11,14 @@ var finalPrices = function(prices) {
             
             if (prices[j] <= prices[i]) {
                 let value = prices[i] - prices[j];
-                res.push(value);
+                prices[i] = value;
                 break;
-            }else if (j == prices.length - 1) {
-                res.push(prices[i]);
             }
         }
     }
 
-    res.push(prices[prices.length - 1]);
 
-    return res;
+    return prices;
 };
 
 // 4 2 4 2
