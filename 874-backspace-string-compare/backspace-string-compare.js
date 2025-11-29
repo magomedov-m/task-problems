@@ -17,7 +17,7 @@ var backspaceCompare = function(s, t) {
     let stackT = [];
 
     for (let i of s) {
-        if (stackS.length > 0 && i == '#' || i == '#') {
+        if (i == '#') {
             stackS.pop();
         }else {
             stackS.push(i);
@@ -25,7 +25,7 @@ var backspaceCompare = function(s, t) {
     }
 
     for (let j of t) {
-        if (stackT.length > 0 && j == '#' || j == '#') {
+        if (j == '#') {
             stackT.pop();
         }else {
             stackT.push(j);
