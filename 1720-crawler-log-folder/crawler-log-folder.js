@@ -6,12 +6,10 @@ var minOperations = function(logs) {
     let stack = [];
 
     for (let i of logs) {
-        if (i === '../') {
-            stack.pop();
-        }else if (i === './') {
-            continue;
-        }else {
-            stack.push(i);
+        if (i != './' && i != '../') {
+            stack.push(i)
+        }else if (i == '../') {
+            stack.pop()
         }
     }
 
