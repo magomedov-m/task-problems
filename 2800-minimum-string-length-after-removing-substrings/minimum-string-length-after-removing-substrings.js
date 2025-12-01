@@ -8,8 +8,10 @@ var minLength = function(s) {
     let stack = [];
     
     for (let i of s) {
+        let len = stack.length;
+        let concat = stack[len - 1] + i;
 
-        if (stack.length > 0 && stack[stack.length - 1] + i == 'AB' || stack[stack.length - 1] + i == 'CD') {
+        if (len > 0 && concat == 'AB' || concat == 'CD') {
             stack.pop();
             continue;
         }
