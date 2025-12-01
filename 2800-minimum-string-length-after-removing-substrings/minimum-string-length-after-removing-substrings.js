@@ -2,19 +2,21 @@
  * @param {string} s
  * @return {number}
  */
+ // '' - false
+ // not AB, CD - true
 var minLength = function(s) {
     let stack = [];
-
-    if (s.length < 2) return s.length;
-
+    
     for (let i of s) {
-        if (i == 'B' && stack[stack.length - 1] == 'A') {
+        let len = stack.length;
+        let concat = stack[len - 1] + i;
+
+        if (len > 0 && concat == 'AB' || concat == 'CD') {
             stack.pop();
-        }else if (i == 'D' && stack[stack.length - 1] == 'C') {
-            stack.pop();
-        }else {
-            stack.push(i);
+            continue;
         }
+
+        stack.push(i);
     }
 
     return stack.length;
