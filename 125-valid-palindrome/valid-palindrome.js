@@ -10,12 +10,12 @@ var isPalindrome = function(s) {
     let l = 0;
     let r = s.length - 1;
 
-    function isChar(c) {
-        // цифра
-        if (c >= '0' && c <= '9') return true;
-        // буква
-        if (c.toLowerCase() !== c.toUpperCase()) return true;
-        return false;
+    function isChar(char) {
+        if (char >= '0' && char <= '9') {
+            return true;
+        }
+        
+        return char.toUpperCase() != char.toLowerCase()
     }
 
     while (l < r) {
