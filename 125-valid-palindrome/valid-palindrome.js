@@ -11,23 +11,24 @@ var isPalindrome = function(s) {
     let r = s.length - 1;
 
     function isChar(char) {
-        if (char >= '0' && char <= '9') {
-            return true;
-        }
-        
+        if (char >= '0' && char <= '9') return true;
+
         return char.toUpperCase() != char.toLowerCase()
     }
 
     while (l < r) {
-        while (l < r && !isChar(s[l])) l++;
-        while (l < r && !isChar(s[r])) r--;
-
-        if (s[l].toLowerCase() !== s[r].toLowerCase()) {
-            return false;
+        if (isChar(s[l]) && isChar(s[r])) {
+            if (s[l].toLowerCase() != s[r].toLowerCase()) {
+                return false;
+            }else {
+                l++;
+                r--;
+            }
+        }else if (!isChar(s[l])) {
+            l++
+        }else if (!isChar(s[r])) {
+            r--;
         }
-
-        l++;
-        r--;
     }
 
     return true;
