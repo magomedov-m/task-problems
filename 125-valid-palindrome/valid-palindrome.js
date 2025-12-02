@@ -2,14 +2,21 @@
  * @param {string} s
  * @return {boolean}
  */
+ // ru, en
+ // '' - false
+ // any char - true
+ /// include numbers - true
 var isPalindrome = function(s) {
-    function isChar(str) {
-        let val = str.toLowerCase();
-        return (val >= 'a' && val <= 'z') || (val >= '0' && val <= '9');
-    }
-
     let l = 0;
     let r = s.length - 1;
+
+    function isChar(c) {
+        // цифра
+        if (c >= '0' && c <= '9') return true;
+        // буква
+        if (c.toLowerCase() !== c.toUpperCase()) return true;
+        return false;
+    }
 
     while (l < r) {
         while (l < r && !isChar(s[l])) l++;
@@ -25,3 +32,15 @@ var isPalindrome = function(s) {
 
     return true;
 };
+
+// 0P
+// l
+//  r
+
+// 'Race, a Car'
+//     l
+//        r
+
+// Казак
+//   l
+//   r
