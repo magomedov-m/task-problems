@@ -2,52 +2,25 @@
  * @param {number[]} nums
  * @return {number}
  */
-
-/*
-Q:
- 1. 1 <= len <= 3 * 10^3
- 2. valid number - false
- 3. sorted - true
-
-A:
-two pointer
-
- 1 2 3 4 3 1
-       ^
-           ^
-
-Time: O(n + k) - my mistake
-Time*: O(n)
-Space: O(1)
-*/
-
+ // sorted - true
+ // [] - false
+ // all duplicates - [1 1 1 1 1]
 var removeDuplicates = function(nums) {
     let l = 0;
-    let r = 0;
 
-    while (r < nums.length) {
-        if (nums[r] != nums[l]) {
+    for (let i = 1; i < nums.length; i++) {
+        if (nums[i] != nums[l]) {
             l++;
-            [nums[l], nums[r]] = [nums[r], nums[l]];
+            [nums[l], nums[i]] = [nums[i], nums[l]];
         }
-
-        r++;
     }
 
     return l + 1;
 };
 
-/*
-debug:
- 1
- ^
- ^
-
- 1 1
- ^
-   ^
-
- 1 2 1
-   ^
-     ^
-*/
+// 0 1 2 3 4 0 2 1 3 4
+        //    ^
+                    //  ^
+// 0 1 2 2
+    //    ^
+    //    ^
