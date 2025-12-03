@@ -3,46 +3,17 @@
  * @param {string} t
  * @return {boolean}
  */
-/*
-Q:
- 1. s.len > t.len - true
- 2. only eng lowerCase char
- 3. '' - true
-
-A:
- abc
-   ^
- ahbgdc
-      ^
-
-Time: O(n)
-Space: O(1)
-*/
 var isSubsequence = function(s, t) {
-    if (s.length > t.length) return false;
-
+    if (s.length == 0 && t.length == 0) return true;
+    if (s.length == 0 && t.length > 0) return true;
+    
     let l = 0;
     
-    for (let i of t) {
-        if (i == s[l]) {
+    for (let i = 0; i < t.length; i++) {
+        if (s[l] == t[i]) {
             l++;
         }
     }
-
+    
     return l == s.length;
 };
-
-/*
-test:
- 1.
- 'ab'
-   ^
- 'acg'
-    ^
-
- 2.
- 'axn'
-    ^
- 'vancx'
-      ^
-*/
