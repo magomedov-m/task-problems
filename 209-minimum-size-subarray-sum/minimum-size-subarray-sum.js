@@ -4,12 +4,13 @@
  * @return {number}
  */
 var minSubArrayLen = function(target, nums) {
-
     let l = 0;
+    let r = 0;
+
     let sum = 0;
     let minLen = Infinity;
 
-    for (let r = 0; r < nums.length; r++) {
+    for (r; r < nums.length; r++) {
         sum += nums[r];
 
         while (sum >= target) {
