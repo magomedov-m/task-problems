@@ -4,37 +4,39 @@
  * @return {boolean}
  */
 var checkInclusion = function(s1, s2) {
-    let s1Count = new Array(26).fill(0);
-    let s2Count = new Array(26).fill(0);
+    let hmS1 = new Map();
+    let hmS2 = new Map();
     
-    function palindrome(s1Copy, s2Copy) {
-
-        for (let i = 0; i < s1Copy.length; i++) {
-            if (s1Copy[i] !== s2Copy[i]) {
-                return false;
-            }
+    for (let i of s1) {
+        hmS1.set(i, (hmS1.get(i) || 0) + 1);
+    }
+    
+    function isAnagram(mp1, mp2) {
+        if (mp1.size !== mp2.size) return false;
+        
+        for (let [k, v] of mp1) {
+            if (v !== mp2.get(k)) return false;
         }
-
+        
         return true;
     }
-
-    for (let i = 0; i < s1.length; i++) {
-        s1Count[s1.charCodeAt(i) - 97]++;
-        s2Count[s2.charCodeAt(i) - 97]++;
-    }
-
-    if (palindrome(s1Count, s2Count)) {
-        return true;
-    }
-
-    for (let i = s1.length; i < s2.length; i++) {
-        s2Count[s2.charCodeAt(i) - 97]++;
-        s2Count[s2.charCodeAt(i - s1.length) - 97]--;
-
-        if (palindrome(s1Count, s2Count)) {
+    
+    let l = 0;
+    
+    for (r = 0; r < s2.length; r++) {
+        hmS2.set(s2[r], (hmS2.get(s2[r]) || 0) + 1);
+        
+        while (r - l + 1 > s1.length) {
+            if (hmS2.get(s2[l]) === 1) hmS2.delete(s2[l]);
+            else hmS2.set(s2[l], hmS2.get(s2[l]) - 1);
+            
+            l++;
+        }
+        
+        if (isAnagram(hmS1, hmS2)) {
             return true;
         }
     }
-
+    
     return false;
 };
