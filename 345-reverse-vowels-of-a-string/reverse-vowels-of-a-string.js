@@ -26,11 +26,9 @@ var reverseVowels = function(s) {
         while (l < r && !isVowel(arrS[l])) l++;
         while (r > l && !isVowel(arrS[r])) r--;
         
-        if (l < r) {
-            [arrS[l], arrS[r]] = [arrS[r], arrS[l]];
-            l++;
-            r--;
-        }
+        [arrS[l], arrS[r]] = [arrS[r], arrS[l]];
+        l++;
+        r--;
     }
     
     return arrS.join('');
