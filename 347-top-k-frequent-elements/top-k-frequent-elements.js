@@ -4,24 +4,28 @@
  * @return {number[]}
  */
 var topKFrequent = function(nums, k) {
-    // решена не полностью мной, (18.05.2025г.)
-    let mp = new Map();
-    let arr = new Array(nums.length + 1).fill().map(() => []);
     let res = [];
-
+    let curArr = new Array(nums.length + 1).fill(null).map(() => []);
+    let mp = new Map();
+    
     for (let i of nums) {
-        mp.set(i, mp.get(i) + 1 || 0);
+        mp.set(i, (mp.get(i) || 0) + 1);
     }
-
-    for (let [i, j] of mp) {
-        arr[j].push(i);
+    
+    for (let [k, v] of mp) {
+        curArr[v].push(k);
     }
-
-    for (let i = nums.length - 1; i >= 0 && res.length < k; i--) {
-        if (arr[i]) {
-            res.push(...arr[i])
+    
+    let r = curArr.length - 1;
+    
+    while (k > 0) {
+        if (curArr[r].length > 0) {
+            res.push(...curArr[r]);
+            k -= curArr[r].length;
         }
-    }
 
+        r--;
+    }
+    
     return res;
-}; 
+};
