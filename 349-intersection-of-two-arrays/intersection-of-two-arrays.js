@@ -4,19 +4,19 @@
  * @return {number[]}
  */
 var intersection = function(nums1, nums2) {
-    let res = [];
     let mp = new Map();
-
+    let res = [];
+    
     for (let i of nums1) {
-        mp.set(i, true);
+        mp.set(i, (mp.get(i) ?? 0) + 1);
     }
-
-    for (let i of nums2) {
-        if (mp.has(i)) {
-            res.push(i);
-            mp.delete(i);
+    
+    for (let j of nums2) {
+        if (mp.get(j)) {
+            res.push(j);
+            mp.delete(j);
         }
     }
-
+    
     return res;
 };
