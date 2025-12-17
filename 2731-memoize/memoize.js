@@ -3,18 +3,20 @@
  * @return {Function}
  */
 function memoize(fn) {
+    let mp = new Map();
+    let callCount = 0;
     
-    let cache = new Map();
-
     return function(...args) {
-        let value = args.join('|');
+        let key = [...args].join('-');
 
-        if (cache.has(value)) {
-            return cache.get(value);
+        if (mp.has(key)) {
+            return mp.get(key);
         }else {
-            let output = fn(...args);
-            cache.set(value, output);
-            return output;
+            let resFn = fn(...args);
+            callCount++;
+            mp.set(key, resFn);
+
+            return resFn;
         }
     }
 }
