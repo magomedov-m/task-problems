@@ -4,10 +4,8 @@
  */
 var findCenter = function(edges) {
     let visited = new Set();
-    let queu = [];
 
     for (let i = 0; i < edges.length; i++) {
-        queu.push(edges[i]);
 
         if (visited.has(edges[i][0])) {
             return edges[i][0];
