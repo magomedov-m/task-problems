@@ -3,24 +3,41 @@
  * @param {string} t
  * @return {boolean}
  */
+// var isAnagram = function(s, t) {
+//     if (s.length !== t.length) return false;
+    
+//     let mpS = new Map();
+//     let mpT = new Map();
+    
+//     for (let i = 0; i < s.length; i++){
+//         mpS.set(s[i], (mpS.get(s[i]) ? mpS.get(s[i]) + 1 : 0));
+//         mpT.set(t[i], (mpT.get(t[i]) ? mpT.get(t[i]) + 1 : 0));
+//     }
+    
+//     for (let [key, val] of mpS) {
+//         if (mpT.get(key) !== val) {
+//             return false;
+//         }
+//     }
+    
+//     return true;
+// };
 var isAnagram = function(s, t) {
-    let mp1 = new Map();
-    let mp2 = new Map();
-
-    for (let i of s) {
-        mp1.set(i, mp1.get(i) + 1 || 0);
+    if (s.length !== t.length) return false;
+    
+    let mpS = new Map();
+    let mpT = new Map();
+    
+    for (let i = 0; i < s.length; i++) {
+        mpS.set(s[i], (mpS.get(s[i]) ?? 0) + 1);
+        mpT.set(t[i], (mpT.get(t[i]) ?? 0) + 1);
     }
-    for (let i of t) {
-        mp2.set(i, mp2.get(i) + 1 || 0);
-    }
-
-    if (mp1.size !== mp2.size) return false;
-
-    for (let [i, j] of mp1.entries()) {
-        if (mp2.get(i) !== j) {
+    
+    for (let [key, val] of mpS) {
+        if (mpT.get(key) !== val) {
             return false;
-        } 
+        }
     }
-
+    
     return true;
 };
