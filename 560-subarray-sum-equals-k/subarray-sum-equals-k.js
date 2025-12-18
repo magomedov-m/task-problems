@@ -13,19 +13,10 @@ var subarraySum = function(nums, k) {
     for (let i of nums) {
         total += i;
 
-        if (mp.has(total - k)) {
-            count += mp.get(total - k);
-        }
+        count += mp.get(total - k) ?? 0;
 
-        mp.set(total, (mp.get(total) || 0) + 1);
+        mp.set(total, (mp.get(total) ?? 0) + 1);
     }
 
     return count;
 };
-
-// mp = 0:1; 1:1; 3:1; 6:1
-// count = 2
-// total = 6
-// k = 3
-// 1 2 3
-//      ^
