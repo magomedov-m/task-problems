@@ -3,16 +3,20 @@
  * @return {Promise}
  */
 async function sleep(millis) {
-
-    let promise = new Promise((resolve, reject) => {
+    // return setTimeout(() => {
+    //     return new Promise((resolve, reject) => {
+    //         resolve()
+    //     })
+    // }, millis);
+    
+    return new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve(t)
+            resolve()
         }, millis)
     })
-
-    return await promise;
 }
 
-
-let t = Date.now()
-sleep(100).then(() => console.log(Date.now() - t)) // 100
+/** 
+ * let t = Date.now()
+ * sleep(100).then(() => console.log(Date.now() - t)) // 100
+ */
