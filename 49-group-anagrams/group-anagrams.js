@@ -3,16 +3,22 @@
  * @return {string[][]}
  */
 var groupAnagrams = function(strs) {
-    let res = {};
-
+    let mp = new Map();
+    let res = [];
+    
     for (let i of strs) {
-        if (!res[i.split('').sort().join('')]) {
-            res[i.split('').sort().join('')] = []
-            res[i.split('').sort().join('')].push(i)
+        let curStr = i.split('').sort().join('');
+        
+        if (mp.has(curStr)) {
+            mp.get(curStr).push(i);
         }else {
-            res[i.split('').sort().join('')].push(i);
+            mp.set(curStr, [i]);
         }
     }
-
-    return Object.values(res);
-};
+    
+    for (let [k, v] of mp) {
+        res.push(v);
+    }
+    
+    return res;
+}
