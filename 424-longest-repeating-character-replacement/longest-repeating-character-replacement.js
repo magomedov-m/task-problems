@@ -3,28 +3,32 @@
  * @param {number} k
  * @return {number}
  */
+ // '' - false
+ // only up case en
+ // AAAAA
+ // k == 0 - true
 var characterReplacement = function(s, k) {
-    let mp = new Map();
-    let res = 0;
+    let max = 0;
+    let cur = 0;
+    let mp = new Map(); // a:2 
     let l = 0;
-    let maxf = 0;
 
-    for (let r = 0; r < s.length; r++) {
-        mp.set(s[r], (mp.get(s[r]) ?? 0) + 1);
-        maxf = Math.max(maxf, mp.get(s[r]));
+    for (let i = 0; i < s.length; i++) {
+        mp.set(s[i], (mp.get(s[i]) ?? 0) + 1);
+        cur = Math.max(cur, mp.get(s[i]));
 
-        while (r - l + 1 - maxf > k) {
-            if (mp.get(s[l]) === 1) {
-                mp.delete(s[l]);
-            }else {
-                mp.set(s[l], mp.get(s[l]) - 1);
-            }
-
+        while (i - l + 1 - cur > k) {
+            mp.set(s[l], mp.get(s[l]) - 1);
             l++;
         }
 
-        res = Math.max(res, r - l + 1);
+        max = Math.max(max, i - l + 1);
     }
 
-    return res;
+    return max;
 };
+
+
+// aababba
+// l
+//   i
