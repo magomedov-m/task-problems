@@ -3,6 +3,7 @@
  * @param {number} t milliseconds
  * @return {Function}
  */
+ const fs = require('fs');
 var debounce = function(fn, t) {
     let timerId;
 
@@ -12,6 +13,9 @@ var debounce = function(fn, t) {
         timerId = setTimeout(() => fn(...args), t);
     }
 };
+process.on("exit", () => {
+    fs.writeFileSync("display_runtime.txt","0");
+});
 
 /**
  * const log = debounce(console.log, 100);
