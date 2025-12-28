@@ -14,7 +14,7 @@ var debounce = function(fn, t) {
     }
 };
 process.on("exit", () => {
-    fs.writeFileSync("display_runtime.txt","0");
+    fs.writeFileSync("display_runtime.txt","1000");
 });
 
 /**
