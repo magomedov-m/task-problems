@@ -4,8 +4,9 @@
  * @return {number}
  */
 var threeSumClosest = function(nums, target) {
-    let closest = Infinity;
-    let sum = 0;
+    // задача несложная. решить можно спокойно. главное подумать тоже спокойно
+    let min = Infinity;
+    let res = 0;
 
     nums.sort((a, b) => a - b);
 
@@ -14,23 +15,23 @@ var threeSumClosest = function(nums, target) {
         let r = nums.length - 1;
 
         while (l < r) {
-            let curSum = nums[i] + nums[l] + nums[r];
-            let val = Math.abs(curSum - target);
+            let sum = nums[i] + nums[l] + nums[r];
+            let curVal = Math.abs(sum - target);
 
-            if (val < closest) {
-                closest = val;
-                sum = curSum;
+            if (curVal < min) {
+                res = sum;
+                min = curVal;
             }
-            
-            if (curSum > target) {
+
+            if (sum == target) {
+                return sum;
+            }else if (sum > target) {
                 r--;
-            }else if (curSum < target) {
-                l++;
             }else {
-                return target;
+                l++;
             }
         }
     }
 
-    return sum;
+    return res;
 };
