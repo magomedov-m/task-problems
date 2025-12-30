@@ -3,16 +3,10 @@
  * @return {Promise}
  */
 async function sleep(millis) {
-    // return setTimeout(() => {
-    //     return new Promise((resolve, reject) => {
-    //         resolve()
-    //     })
-    // }, millis);
-    
-    return new Promise((resolve, reject) => {
+    return new Promise(function(resolve, _) {
         setTimeout(() => {
             resolve()
-        }, millis)
+        }, millis);
     })
 }
 
