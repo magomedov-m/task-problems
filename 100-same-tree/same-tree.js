@@ -12,9 +12,15 @@
  * @return {boolean}
  */
 var isSameTree = function(p, q) {
-    if (!p && !q) return true;
-    if (!p || !q) return false;
-    if (p.val !== q.val) return false;
+    function check(p, q) {
+        if (!p && !q) return true;
+        if (!p || !q) return false;
 
-    return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+        if (p.val !== q.val) return false;
+
+        return check(p.left, q.left) && check(p.right, q.right);
+    }
+
+    return check(p, q);
+
 };
