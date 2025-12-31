@@ -11,8 +11,6 @@
  * @return {number}
  */
 var maxDepth = function(root) {
-    let max = 0;
-
     function dfs(node) {
         if (!node) return 0;
 
