@@ -14,8 +14,8 @@ function numIslands(grid) {
 
         grid[row][column] = '0';
 
-        dfs(row, column + 1);
         dfs(row - 1, column);
+        dfs(row, column + 1);
         dfs(row + 1, column);
         dfs(row, column - 1);
     }
