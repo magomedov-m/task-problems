@@ -10,17 +10,27 @@
  * @param {TreeNode} root
  * @return {TreeNode}
  */
+ /*
+ root = [] - true -> []
+ n-ary tree - false
+
+ O(n)
+ S(n)
+ */
 var invertTree = function(root) {
-    if (root == null) return root;
+    function invert(node) {
+        if (node === null) return null;
 
-    const queue = new Queue([root]);
+        let tmp = node.left;
 
-    while (!queue.isEmpty()) {
-        let node = queue.pop();
-        [node.left, node.right] = [node.right, node.left];
-        if (node.left !== null) queue.push(node.left);
-        if (node.right !== null) queue.push(node.right);
+        node.left = node.right;
+        node.right = tmp;
+
+        invert(node.left);
+        invert(node.right);
+
+        return node;
     }
 
-    return root;
+    return invert(root);
 };
