@@ -11,14 +11,16 @@
  * @return {boolean}
  */
 var hasCycle = function(head) {
-    let l = head;
-    let r = head;
+    let left = head;
+    let right = head;
 
-    while (r && r.next) {
-        l = l.next;
-        r = r.next.next;
+    while (right && right.next) {
+        left = left.next;
+        right = right.next.next;
 
-        if (l === r) return true;
+        if (left === right) {
+            return true;
+        }
     }
 
     return false;
