@@ -15,12 +15,13 @@ var hasCycle = function(head) {
     let right = head;
 
     while (right && right.next) {
+        
         left = left.next;
         right = right.next.next;
-
-        if (left === right) {
+        if (left == right) {
             return true;
         }
+
     }
 
     return false;
