@@ -16,22 +16,22 @@
 var nextGreatestLetter = function(letters, target) {
     let l = 0;
     let r = letters.length - 1;
-
-    while (l <= r) {
+   
+    while (l < r) {
         let mid = Math.floor((r - l) / 2) + l;
-
+       
         if (letters[mid] > target) {
-            r = mid - 1;
-        }else {
+            r = mid;
+        }else if (letters[mid] <= target) {
             l = mid + 1;
         }
     }
-
+   
     if (letters[l] > target) {
-        return letters[l]
+       return letters[l];
+    }else {
+        return letters[0];
     }
-
-    return letters[0];
 };
 
 // target = a
