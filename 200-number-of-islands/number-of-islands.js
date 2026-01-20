@@ -2,32 +2,31 @@
  * @param {character[][]} grid
  * @return {number}
  */
-function numIslands(grid) {
-    let rows = grid.length;
-    let columns = grid[0].length;
-    let island = 0;
 
-    function dfs(row, column) {
-        if (!grid[row]?.[column] || grid[row][column] === '0') {
+function numIslands(grid) {
+    let count = 0;
+    
+    function bfs(i, j) {
+        if (!grid[i]?.[j] || grid[i][j] === '0') {
             return;
         }
-
-        grid[row][column] = '0';
-
-        dfs(row - 1, column);
-        dfs(row, column + 1);
-        dfs(row + 1, column);
-        dfs(row, column - 1);
+        
+        grid[i][j] = '0';
+        
+        bfs(i - 1, j)
+        bfs(i, j - 1)
+        bfs(i + 1, j)
+        bfs(i, j + 1);
     }
-
-    for (let i = 0; i < rows; i++) {
-        for (let j = 0; j < columns; j++) {
+    
+    for (let i = 0; i < grid.length; i++) {
+        for (let j = 0; j < grid[i].length; j++) {
             if (grid[i][j] === '1') {
-                dfs(i, j);
-                island++;
+                count++;
+                bfs(i, j);
             }
         }
     }
-
-    return island;
+    
+    return count;
 }
