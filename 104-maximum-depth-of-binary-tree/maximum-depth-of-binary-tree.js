@@ -10,21 +10,24 @@
  * @param {TreeNode} root
  * @return {number}
  */
+
+ /*
+ root = null
+ bin tree - true
+ connected - true
+
+ T(v + e)
+ S(n)
+ */
 var maxDepth = function(root) {
-    let stack = [[root, 1]];
-    let max = 0;
 
-    while (stack.length > 0) {
-        let node = stack.pop();
-        let curr = node[0];
-        let depth = node[1]
-
-        if (curr !== null) {
-            max = Math.max(max, depth);
-            stack.push([curr.left, depth + 1]);
-            stack.push([curr.right, depth + 1]);
+    function depth(node) {
+        if (!node) {
+            return 0;
         }
+
+        return 1 + Math.max(depth(node.left), depth(node.right));
     }
 
-    return max;
+    return depth(root);
 };
