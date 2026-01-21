@@ -20,14 +20,17 @@
  S(n)
  */
 var maxDepth = function(root) {
-
     function depth(node) {
         if (!node) {
             return 0;
         }
 
-        return 1 + Math.max(depth(node.left), depth(node.right));
+        let max = Math.max(depth(node.right) + 1, depth(node.left) + 1);
+        
+        return max;
     }
 
-    return depth(root);
+    let res = depth(root);
+
+    return res;
 };
