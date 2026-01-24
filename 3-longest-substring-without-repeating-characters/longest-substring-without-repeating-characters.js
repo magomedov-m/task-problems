@@ -2,27 +2,38 @@
  * @param {string} s
  * @return {number}
  */
+
+/*
+'' - true
+Pp - true
+
+T(n)
+S(n)
+*/
 var lengthOfLongestSubstring = function(s) {
-    if (s.length < 1) return s.length;
-    
-    let resLen = 1;
-    let hs = new Set();
+    let max = 0;
     let l = 0;
-    
+    let buffer = new Set();
+
     for (let r = 0; r < s.length; r++) {
-        while (hs.has(s[r])) {
-            hs.delete(s[l]);
+
+        while (buffer.has(s[r])) {
+            buffer.delete(s[l]);
             l++;
         }
-    
-        hs.add(s[r]);
-        resLen = Math.max(r - l + 1, resLen);
+
+        max = Math.max(max, r - l + 1);
+
+        buffer.add(s[r]);
     }
-    
-    return resLen;
+
+    return max;
 };
-// abcabcbb
-// l
-//   r
-// res = 
-// set = 
+
+/*
+max = 1
+buffer = a
+s = abcabcb
+    l
+     r
+*/
